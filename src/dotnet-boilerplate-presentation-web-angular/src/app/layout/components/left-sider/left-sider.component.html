@@ -1,0 +1,14 @@
+<nav>
+  <ul>
+    <li><a [routerLink]="['/']" routerLinkActive="active">Home</a></li>
+    <li><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
+    <li><a [routerLink]="['/simple']" routerLinkActive="active">Simple Layout</a></li>
+    <li><a [routerLink]="['/main']" routerLinkActive="active">Main Layout</a></li>
+    <li>
+      <a [routerLink]="['/characters']" routerLinkActive="active">Characters</a>
+      <ul>
+        <li><a [routerLink]="['/characters/character']" routerLinkActive="active">Character</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>

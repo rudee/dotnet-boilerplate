@@ -1,8 +1,12 @@
+import { HttpClientModule } from '@angular/common/http';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from '@app/app-routing.module';
+import { AppComponent } from '@app/app.component';
+import { CoreModule } from '@app/core/core.module';
+import { GlobalErrorHandler } from '@app/global-error-handler';
+// import { SharedModule } from '@app/layout/layout.module';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -10,9 +14,17 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    // LayoutModule,
+    AppRoutingModule,
+    SharedModule,
+    CoreModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
