@@ -4,5 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DotnetBoilerplate.Domain.Services\DotnetBoilerplate.Domain.Services.csproj" />
+    <ProjectReference Include="..\DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore\DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
 
 </Project>
