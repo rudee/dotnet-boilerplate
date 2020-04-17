@@ -6,7 +6,7 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCo
 {
     public class TenantRepository : RepositoryBase<Tenant>, ITenantRepository
     {
-        public TenantRepository(ExampleDbContext context)
+        public TenantRepository(FoobarDbContext context)
             : base(context)
         {
         }

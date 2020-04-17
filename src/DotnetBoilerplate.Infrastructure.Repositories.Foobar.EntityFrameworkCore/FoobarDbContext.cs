@@ -1,21 +1,20 @@
-using System;
 using DotnetBoilerplate.Domain.Entities.Foobar;
 using DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore
 {
-    public class ExampleDbContext : DbContext
+    public class FoobarDbContext : DbContext
     {
         public virtual DbSet<Tenant> Tenants { get; set; }
         public virtual DbSet<TenantUser> TenantUsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-        public ExampleDbContext()
+        public FoobarDbContext()
         {
         }
 
-        public ExampleDbContext(DbContextOptions<ExampleDbContext> options)
+        public FoobarDbContext(DbContextOptions<FoobarDbContext> options)
             : base(options)
         {
         }

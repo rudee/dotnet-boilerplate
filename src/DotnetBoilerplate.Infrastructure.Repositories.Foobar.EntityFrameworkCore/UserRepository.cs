@@ -6,7 +6,7 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCo
 {
     public class UserRepository : RepositoryBase<User>, IUserRepository
     {
-        public UserRepository(ExampleDbContext context)
+        public UserRepository(FoobarDbContext context)
             : base(context)
         {
         }

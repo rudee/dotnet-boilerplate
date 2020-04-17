@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
+using DotnetBoilerplate.Presentation.Web.Api.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -55,6 +56,8 @@ namespace DotnetBoilerplate.Presentation.Web.Api
                     }
                 );
             });
+
+            services.AddDependencyInjection();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

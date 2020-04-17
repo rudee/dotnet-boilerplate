@@ -5,8 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DotnetBoilerplate.Domain.Entities.Foobar\DotnetBoilerplate.Domain.Entities.Foobar.csproj" />
+    <ProjectReference Include="..\DotnetBoilerplate.Domain.Repositories.Foobar\DotnetBoilerplate.Domain.Repositories.Foobar.csproj" />
     <ProjectReference Include="..\DotnetBoilerplate.Domain.Services\DotnetBoilerplate.Domain.Services.csproj" />
-    <ProjectReference Include="..\DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore\DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\DotnetBoilerplate.Presentation.Web.Api.DependencyInjection\DotnetBoilerplate.Presentation.Web.Api.DependencyInjection.csproj" />
   </ItemGroup>
 
 

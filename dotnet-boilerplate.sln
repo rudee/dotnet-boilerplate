@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetBoilerplate.Domain.Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore", "src\DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore\DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore.csproj", "{4295AF34-37D5-4914-961F-53CCB8E32553}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetBoilerplate.Presentation.Web.Api.DependencyInjection", "src\DotnetBoilerplate.Presentation.Web.Api.DependencyInjection\DotnetBoilerplate.Presentation.Web.Api.DependencyInjection.csproj", "{AA731034-BE73-4205-9DE4-8C3A02F56E46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{4295AF34-37D5-4914-961F-53CCB8E32553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4295AF34-37D5-4914-961F-53CCB8E32553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4295AF34-37D5-4914-961F-53CCB8E32553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA731034-BE73-4205-9DE4-8C3A02F56E46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA731034-BE73-4205-9DE4-8C3A02F56E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA731034-BE73-4205-9DE4-8C3A02F56E46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA731034-BE73-4205-9DE4-8C3A02F56E46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{214C1CC4-A3B3-4251-A17C-849CBBD980AC} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{6210E6F2-6AB3-4061-A243-DF02EBA89625} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{4295AF34-37D5-4914-961F-53CCB8E32553} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
+		{AA731034-BE73-4205-9DE4-8C3A02F56E46} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C918B48-30C5-4998-88F5-195C109C636C}

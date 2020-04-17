@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotnetBoilerplate.Domain.Repositories.Foobar\DotnetBoilerplate.Domain.Repositories.Foobar.csproj" />
+    <ProjectReference Include="..\DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore\DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>
