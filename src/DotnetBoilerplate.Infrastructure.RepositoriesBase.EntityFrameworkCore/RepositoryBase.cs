@@ -1,9 +1,11 @@
+using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using DotnetBoilerplate.Domain.Repositories;
+using DotnetBoilerplate.Domain.RepositoriesBase;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore
+namespace DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore
 {
     public abstract class RepositoryBase<TEntity> : ReadOnlyRepositoryBase<TEntity>, IRepository<TEntity>
         where TEntity : class
@@ -29,6 +31,12 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore
             return entity;
         }
 
+        public virtual async Task<IEnumerable<TEntity>> AddManyAsync(IEnumerable<TEntity> entities,
+                                                                     CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual async Task RemoveAsync(TEntity           entity,
                                               CancellationToken cancellationToken = default)
         {
@@ -37,6 +45,12 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore
 
             await Context.SaveChangesAsync(cancellationToken)
                 .ConfigureAwait(false);
+        }
+
+        public virtual async Task<IEnumerable<TEntity>> RemoveManyAsync(IEnumerable<TEntity> entities,
+                                                                        CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
         }
 
         public virtual async Task<TEntity> UpdateAsync(TEntity           entity,
@@ -50,6 +64,12 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore
                 .ConfigureAwait(false);
 
             return entity;
+        }
+
+        public virtual async Task<IEnumerable<TEntity>> UpdateManyAsync(IEnumerable<TEntity> entities,
+                                                                        CancellationToken    cancellationToken = default)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotnetBoilerplate.Domain.Entities.Foobar\DotnetBoilerplate.Domain.Entities.Foobar.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DotnetBoilerplate.Domain.RepositoriesBase\DotnetBoilerplate.Domain.RepositoriesBase.csproj" />
   </ItemGroup>
 

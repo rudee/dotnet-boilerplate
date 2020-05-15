@@ -1,14 +1,16 @@
+using System;
 using DotnetBoilerplate.Domain.Entities.Foobar;
-using DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore;
+using DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore.Extensions;
+using DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore
 {
     public class FoobarDbContext : DbContext
     {
-        public virtual DbSet<Tenant> Tenants { get; set; }
-        public virtual DbSet<TenantUser> TenantUsers { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Document> Document { get; set; }
+        public virtual DbSet<DocumentStatus> DocumentStatus { get; set; }
+        public virtual DbSet<Schedule> Schedule { get; set; }
 
         public FoobarDbContext()
         {
@@ -21,29 +23,31 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCo
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Tenant
-            modelBuilder.Entity<Tenant>(entity =>
+            // Document
+            modelBuilder.Entity<Document>(builder =>
             {
-                entity.HasKey(e => e.TenantId);
-                entity.Property(p => p.RowVersion).IsRowVersion();
-                entity.Property(p => p.Guid).HasValueGenerator<GuidValueGenerator>().ValueGeneratedOnAdd();
+                builder.ConfigureDefaults<Document, long, Guid>();
+
+                builder
+                    .HasOne(d => d.Schedule)
+                    .WithMany(p => p.Documents)
+                    .HasForeignKey(d => d.ScheduleId);
+
+                builder
+                    .HasOne(d => d.DocumentStatus)
+                    .WithMany();
             });
 
-            // TenantUser
-            modelBuilder.Entity<TenantUser>(entity =>
+            // DocumentStatus
+            modelBuilder.Entity<DocumentStatus>(entity =>
             {
-                entity.HasKey(e => new { e.TenantId, e.UserId });
-                entity.Property(p => p.RowVersion).IsRowVersion();
-                entity.HasOne(d => d.Tenant).WithMany(p => p.TenantUsers).HasForeignKey(d => d.TenantId);
-                entity.HasOne(d => d.User).WithMany(p => p.TenantUsers).HasForeignKey(d => d.UserId);
+                entity.ConfigureDefaults<DocumentStatus, int, Guid>();
             });
 
-            // User
-            modelBuilder.Entity<User>(entity =>
+            // Schedule
+            modelBuilder.Entity<Schedule>(builder =>
             {
-                entity.HasKey(e => e.UserId);
-                entity.Property(p => p.RowVersion).IsRowVersion();
-                entity.Property(p => p.Guid).HasValueGenerator<GuidValueGenerator>().ValueGeneratedOnAdd();
+                builder.ConfigureDefaults<Schedule, long, Guid>();
             });
         }
     }

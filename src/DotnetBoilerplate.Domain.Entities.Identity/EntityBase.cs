@@ -1,12 +1,12 @@
 using System;
 
-namespace DotnetBoilerplate.Domain.Entities.Foobar
+namespace DotnetBoilerplate.Domain.Entities.Identity
 {
     public abstract class EntityBase : EntityBase<int>
     {
     }
 
-    public abstract class EntityBase<TId> : EntityBase<TId, Guid>
+    public abstract class EntityBase<TId> : EntityBase<TId, int>
         where TId : struct
     {
     }

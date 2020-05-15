@@ -1,14 +1,9 @@
-using System;
 using System.Collections.Generic;
 
-namespace DotnetBoilerplate.Domain.Entities.Foobar
+namespace DotnetBoilerplate.Domain.Entities.Identity
 {
-    public class User : EntityBase
+    public class User : EntityWithGuidBase
     {
-        public int UserId { get; set; }
-
-        public Guid Guid { get; set; }
-
         public string Email { get; set; }
 
         public string Name { get; set; }

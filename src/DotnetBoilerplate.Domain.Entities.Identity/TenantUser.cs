@@ -1,6 +1,6 @@
-namespace DotnetBoilerplate.Domain.Entities.Foobar
+namespace DotnetBoilerplate.Domain.Entities.Identity
 {
-    public class TenantUser : EntityBase
+    public class TenantUser : EntityBase<long>
     {
         public int TenantId { get; set; }
 

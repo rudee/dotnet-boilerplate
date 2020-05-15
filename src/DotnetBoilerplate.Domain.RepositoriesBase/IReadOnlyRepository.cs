@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DotnetBoilerplate.Domain.Repositories
+namespace DotnetBoilerplate.Domain.RepositoriesBase
 {
     public interface IReadOnlyRepository<TEntity>
         where TEntity : class
@@ -15,7 +15,7 @@ namespace DotnetBoilerplate.Domain.Repositories
         Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate,
                                 CancellationToken               cancellationToken = default);
 
-        Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> predicate = null,
-                                                CancellationToken               cancellationToken = default);
+        Task<IEnumerable<TEntity>> FindManyAsync(Expression<Func<TEntity, bool>> predicate = null,
+                                                 CancellationToken               cancellationToken = default);
     }
 }

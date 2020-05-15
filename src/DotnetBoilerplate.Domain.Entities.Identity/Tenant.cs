@@ -1,14 +1,9 @@
-using System;
 using System.Collections.Generic;
 
-namespace DotnetBoilerplate.Domain.Entities.Foobar
+namespace DotnetBoilerplate.Domain.Entities.Identity
 {
-    public class Tenant : EntityBase
+    public class Tenant : EntityWithGuidBase
     {
-        public int TenantId { get; set; }
-
-        public Guid Guid { get; set; }
-
         public string Code { get; set; }
 
         public string Name { get; set; }

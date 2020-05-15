@@ -15,8 +15,9 @@ namespace DotnetBoilerplate.Presentation.Web.Api.DependencyInjection
 
         internal void AddServices()
         {
-            _services.AddTransient<ITenantRepository, TenantRepository>();
-            _services.AddTransient<IUserRepository, UserRepository>();
+            _services.AddTransient<IDocumentRepository, DocumentRepository>();
+            _services.AddTransient<IDocumentStatusRepository, DocumentStatusRepository>();
+            _services.AddTransient<IScheduleRepository, ScheduleRepository>();
         }
     }
 }

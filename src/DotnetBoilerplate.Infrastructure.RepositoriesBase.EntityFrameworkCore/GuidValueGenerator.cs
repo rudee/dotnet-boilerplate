@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 
-namespace DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore
+namespace DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore
 {
     public class GuidValueGenerator : ValueGenerator
     {

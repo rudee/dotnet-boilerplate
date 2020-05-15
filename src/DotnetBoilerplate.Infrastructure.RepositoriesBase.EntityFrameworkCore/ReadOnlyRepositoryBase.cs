@@ -4,10 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using DotnetBoilerplate.Domain.Repositories;
+using DotnetBoilerplate.Domain.RepositoriesBase;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore
+namespace DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore
 {
     public abstract class ReadOnlyRepositoryBase<TEntity> : IReadOnlyRepository<TEntity>
         where TEntity : class
@@ -32,8 +32,8 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore
                 .ConfigureAwait(false);
         }
 
-        public virtual async Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> predicate,
-                                                                     CancellationToken               cancellationToken = default)
+        public virtual async Task<IEnumerable<TEntity>> FindManyAsync(Expression<Func<TEntity, bool>> predicate,
+                                                                      CancellationToken               cancellationToken = default)
         {
             return await Context.Set<TEntity>()
                 .Where(predicate)

@@ -1,12 +1,12 @@
 using DotnetBoilerplate.Domain.Entities.Foobar;
 using DotnetBoilerplate.Domain.Repositories.Foobar;
-using DotnetBoilerplate.Infrastructure.Repositories.EntityFrameworkCore;
+using DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore;
 
 namespace DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore
 {
-    public class TenantRepository : RepositoryBase<Tenant>, ITenantRepository
+    public class DocumentStatusRepository : RepositoryBase<DocumentStatus>, IDocumentStatusRepository
     {
-        public TenantRepository(FoobarDbContext context)
+        public DocumentStatusRepository(FoobarDbContext context)
             : base(context)
         {
         }
