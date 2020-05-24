@@ -43,8 +43,8 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCo
         {
             builder.HasKey(e => e.Id);
             builder.Property(e => e.RowVersion).IsRowVersion();
-            builder.Property(e => e.CreatedOn).HasValueGenerator<DateTimeValueGenerator>().ValueGeneratedOnAdd();
-            builder.Property(e => e.ModifiedOn).HasValueGenerator<DateTimeValueGenerator>().ValueGeneratedOnAddOrUpdate();
+            builder.Property(e => e.CreatedOn).HasValueGenerator<UtcNowDateTimeValueGenerator>().ValueGeneratedOnAdd();
+            builder.Property(e => e.ModifiedOn).HasValueGenerator<UtcNowDateTimeValueGenerator>().ValueGeneratedOnAddOrUpdate();
         }
 
         private static void ConfigureEntityWithGuidBaseDefaults<TEntity, TId, TUserId>(EntityTypeBuilder<EntityWithGuidBase<TId, TUserId>> builder)

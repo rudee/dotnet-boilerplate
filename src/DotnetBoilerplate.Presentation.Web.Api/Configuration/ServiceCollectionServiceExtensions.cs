@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DotnetBoilerplate.Presentation.Web.Api.DependencyInjection
+namespace DotnetBoilerplate.Presentation.Web.Api.Configuration
 {
     public static class ServiceCollectionServiceExtensions
     {
@@ -11,11 +11,8 @@ namespace DotnetBoilerplate.Presentation.Web.Api.DependencyInjection
 
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
-            var repositoryDependencyInjection = new RepositoryDependencyInjection(services);
-            repositoryDependencyInjection.AddServices();
-
-            services.AddTransient<UserService>()
-            
+            services.AddRepositoryDependencyInjection();
+            services.AddServiceDependencyInjection();
 
             return services;
         }

@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Domain.Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Presentation.Web.Api", "src\DotnetBoilerplate.Presentation.Web.Api\DotnetBoilerplate.Presentation.Web.Api.csproj", "{568BC4F8-86B4-4CFC-9C79-987208F043AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Presentation.Web.Api.OData", "src\DotnetBoilerplate.Presentation.Web.Api.OData\DotnetBoilerplate.Presentation.Web.Api.OData.csproj", "{F4889D9C-A493-4B9D-9F94-DCC430351DF5}"
-EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "dotnet-boilerplate-presentation-web-angular", "src\dotnet-boilerplate-presentation-web-angular\", "{9E7D11EE-D67D-4FE3-AC01-056523548144}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
@@ -38,17 +36,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Domain.Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore", "src\DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore\DotnetBoilerplate.Infrastructure.Repositories.Foobar.EntityFrameworkCore.csproj", "{4295AF34-37D5-4914-961F-53CCB8E32553}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Presentation.Web.Api.DependencyInjection", "src\DotnetBoilerplate.Presentation.Web.Api.DependencyInjection\DotnetBoilerplate.Presentation.Web.Api.DependencyInjection.csproj", "{AA731034-BE73-4205-9DE4-8C3A02F56E46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Domain.Entities.Identity", "src\DotnetBoilerplate.Domain.Entities.Identity\DotnetBoilerplate.Domain.Entities.Identity.csproj", "{BB7442F3-15B5-4AB3-8301-7249E05BE72D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetBoilerplate.Domain.Entities.Identity", "src\DotnetBoilerplate.Domain.Entities.Identity\DotnetBoilerplate.Domain.Entities.Identity.csproj", "{BB7442F3-15B5-4AB3-8301-7249E05BE72D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Domain.Repositories.Identity", "src\DotnetBoilerplate.Domain.Repositories.Identity\DotnetBoilerplate.Domain.Repositories.Identity.csproj", "{10157889-8B9F-477B-A253-EE54A9BDC4B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetBoilerplate.Domain.Repositories.Identity", "src\DotnetBoilerplate.Domain.Repositories.Identity\DotnetBoilerplate.Domain.Repositories.Identity.csproj", "{10157889-8B9F-477B-A253-EE54A9BDC4B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore", "src\DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore\DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore.csproj", "{C072D778-6D09-4AE5-9E6B-CD7060882EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore", "src\DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore\DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore.csproj", "{C072D778-6D09-4AE5-9E6B-CD7060882EA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Domain.RepositoriesBase", "src\DotnetBoilerplate.Domain.RepositoriesBase\DotnetBoilerplate.Domain.RepositoriesBase.csproj", "{E0A4495A-0C8C-4102-8D61-ABDD2D379EC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetBoilerplate.Domain.RepositoriesBase", "src\DotnetBoilerplate.Domain.RepositoriesBase\DotnetBoilerplate.Domain.RepositoriesBase.csproj", "{E0A4495A-0C8C-4102-8D61-ABDD2D379EC4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore", "src\DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore\DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore.csproj", "{5852F1A4-67F1-43CA-9DA5-EAE51D675CAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore", "src\DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore\DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore.csproj", "{5852F1A4-67F1-43CA-9DA5-EAE51D675CAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,10 +60,6 @@ Global
 		{568BC4F8-86B4-4CFC-9C79-987208F043AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{568BC4F8-86B4-4CFC-9C79-987208F043AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{568BC4F8-86B4-4CFC-9C79-987208F043AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4889D9C-A493-4B9D-9F94-DCC430351DF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4889D9C-A493-4B9D-9F94-DCC430351DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4889D9C-A493-4B9D-9F94-DCC430351DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4889D9C-A493-4B9D-9F94-DCC430351DF5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E7D11EE-D67D-4FE3-AC01-056523548144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E7D11EE-D67D-4FE3-AC01-056523548144}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{214C1CC4-A3B3-4251-A17C-849CBBD980AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -82,10 +74,6 @@ Global
 		{4295AF34-37D5-4914-961F-53CCB8E32553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4295AF34-37D5-4914-961F-53CCB8E32553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4295AF34-37D5-4914-961F-53CCB8E32553}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA731034-BE73-4205-9DE4-8C3A02F56E46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA731034-BE73-4205-9DE4-8C3A02F56E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA731034-BE73-4205-9DE4-8C3A02F56E46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA731034-BE73-4205-9DE4-8C3A02F56E46}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB7442F3-15B5-4AB3-8301-7249E05BE72D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB7442F3-15B5-4AB3-8301-7249E05BE72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB7442F3-15B5-4AB3-8301-7249E05BE72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -113,12 +101,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FC9B65D2-9232-4C73-B556-78E9290564C8} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{568BC4F8-86B4-4CFC-9C79-987208F043AE} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
-		{F4889D9C-A493-4B9D-9F94-DCC430351DF5} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{9E7D11EE-D67D-4FE3-AC01-056523548144} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{214C1CC4-A3B3-4251-A17C-849CBBD980AC} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{6210E6F2-6AB3-4061-A243-DF02EBA89625} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{4295AF34-37D5-4914-961F-53CCB8E32553} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
-		{AA731034-BE73-4205-9DE4-8C3A02F56E46} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{BB7442F3-15B5-4AB3-8301-7249E05BE72D} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{10157889-8B9F-477B-A253-EE54A9BDC4B7} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
 		{C072D778-6D09-4AE5-9E6B-CD7060882EA6} = {39FAFA66-1BD2-4C0C-AF4F-731258D52EB5}
