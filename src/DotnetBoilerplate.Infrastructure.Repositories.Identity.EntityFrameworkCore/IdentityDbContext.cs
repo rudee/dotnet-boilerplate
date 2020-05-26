@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using DotnetBoilerplate.Domain.Entities.Identity;
 using DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore.Extensions;
-using DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore
 {
@@ -15,10 +14,6 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFramework
         public virtual DbSet<TenantUser> TenantUser { get; set; }
         public virtual DbSet<User>       User       { get; set; }
 
-        public IdentityDbContext()
-        {
-        }
-
         public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
             : base(options)
         {
@@ -26,64 +21,23 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // IEntity<int>
-            foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes().Where(t => typeof(IEntity<int>).IsAssignableFrom(t.ClrType)))
-            {
-                var properties = entityType.GetProperties();
-                var declaredProperties = entityType.GetDeclaredProperties();
+            // IEntity<int, int>
+            modelBuilder.ConfigureIEntityTypes<int, int>();
 
-                //builder.HasKey(e => e.Id);
-                //builder.Property(e => e.CreatedOn).HasValueGenerator<DateTimeValueGenerator>().ValueGeneratedOnAdd();
-                //builder.Property(e => e.ModifiedOn).HasValueGenerator<DateTimeValueGenerator>().ValueGeneratedOnAddOrUpdate();
-                //builder.Property(e => e.RowVersion).IsRowVersion();
-
-                IMutableProperty id = entityType.FindProperty(nameof(IEntity<int>.Id));
-                entityType.SetPrimaryKey(id);
-
-                IMutableProperty createdOn = entityType.FindProperty(nameof(IEntity<int>.CreatedOn));
-                createdOn.SetValueGeneratorFactory((p, e) => new UtcNowDateTimeValueGenerator());
-                createdOn.ValueGenerated = ValueGenerated.OnAdd;
-
-                IMutableProperty modifiedOn = entityType.FindProperty(nameof(IEntity<int>.ModifiedOn));
-                modifiedOn.SetValueGeneratorFactory((p, e) => new UtcNowDateTimeValueGenerator());
-                //modifiedOn.ValueGenerated = ValueGenerated.OnAddOrUpdate; // See: https://github.com/dotnet/efcore/issues/6999
-                modifiedOn.ValueGenerated = ValueGenerated.OnAdd;
-
-                IMutableProperty rowVersion = entityType.FindProperty(nameof(IEntity<int>.RowVersion));
-                rowVersion.ValueGenerated = ValueGenerated.OnAddOrUpdate;
-                rowVersion.IsConcurrencyToken = true;
-            }
-
-            // IEntity<long>
-            foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes().Where(t => typeof(IEntity<long>).IsAssignableFrom(t.ClrType)))
-            {
-                var properties = entityType.GetProperties();
-                var declaredProperties = entityType.GetDeclaredProperties();
-                //IMutableProperty guid = entityType.FindProperty(nameof(IEntity.Id));
-            }
+            // IEntity<long, int>
+            modelBuilder.ConfigureIEntityTypes<long, int>();
 
             // IGuidEntity
-            foreach (IMutableEntityType guidEntityType in modelBuilder.Model.GetEntityTypes().Where(t => typeof(IGuidEntity).IsAssignableFrom(t.ClrType)))
-            {
-                IMutableProperty guid = guidEntityType.FindProperty(nameof(IGuidEntity.Guid));
-                guid.SetValueGeneratorFactory((p, e) => new GuidValueGenerator());
-                guid.ValueGenerated = ValueGenerated.OnAdd;
-            }
+            modelBuilder.ConfigureIGuidEntityTypes();
 
             // Tenant
             modelBuilder.Entity<Tenant>(builder =>
             {
-                //builder.ConfigureDefaults<Tenant, int, int>();
-
-                //builder.ConfigureDefaults1();
-                //builder.Property(e => e.RowVersion).IsRowVersion();
             });
 
             // TenantUser
             modelBuilder.Entity<TenantUser>(builder =>
             {
-                //builder.ConfigureDefaults<TenantUser, long, int>();
-
                 // Tenant-User many-to-many relationship
                 builder
                     .HasOne(d => d.Tenant)
@@ -98,8 +52,40 @@ namespace DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFramework
             // User
             modelBuilder.Entity<User>(builder =>
             {
-                //builder.ConfigureDefaults<User, int, int>();
             });
+        }
+
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            OnSaveChanges();
+            return base.SaveChanges(acceptAllChangesOnSuccess);
+        }
+
+        public override int SaveChanges()
+        {
+            OnSaveChanges();
+            return base.SaveChanges();
+        }
+
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        {
+            OnSaveChanges();
+            return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken)
+                .ConfigureAwait(false);
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            OnSaveChanges();
+            return await base.SaveChangesAsync(cancellationToken)
+                .ConfigureAwait(false);
+        }
+
+        private void OnSaveChanges()
+        {
+            IEnumerable<EntityEntry> entityEntries = ChangeTracker.Entries();
+            entityEntries.OverrideIEntityProperties<int, int>();
+            entityEntries.OverrideIEntityProperties<long, int>();
         }
     }
 }

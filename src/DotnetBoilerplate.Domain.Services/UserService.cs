@@ -18,9 +18,9 @@ namespace DotnetBoilerplate.Domain.Services
             _userRepository = userRepository;
         }
 
-        public async Task<User> AddUserAsync(string email,
-                                             string name,
-                                             int createdByUserId,
+        public async Task<User> AddUserAsync(string            email,
+                                             string            name,
+                                             int               createdByUserId,
                                              CancellationToken cancellationToken = default)
         {
             var user = new User
@@ -31,9 +31,26 @@ namespace DotnetBoilerplate.Domain.Services
                 Name       = name
             };
 
-            User newUser = await _userRepository.AddAsync(user, cancellationToken);
+            User addedUser = await _userRepository.AddAsync(user, cancellationToken).ConfigureAwait(false);
 
-            return newUser;
+            return addedUser;
+        }
+
+        public async Task<User> UpdateUserAsync(int               id,
+                                                string            email,
+                                                string            name,
+                                                int               modifiedByUserId,
+                                                CancellationToken cancellationToken = default)
+        {
+
+            User user = await _userRepository.FindAsync(u => u.Id == id).ConfigureAwait(false);
+            user.Email      = email;
+            user.Name       = name;
+            user.ModifiedBy = modifiedByUserId;
+
+            User updatedUser = await _userRepository.UpdateAsync(user, cancellationToken).ConfigureAwait(false);
+
+            return updatedUser;
         }
     }
 }

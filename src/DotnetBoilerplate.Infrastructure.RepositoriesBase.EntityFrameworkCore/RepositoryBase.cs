@@ -26,7 +26,7 @@ namespace DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore
                 .ConfigureAwait(false);
 
             await Context.SaveChangesAsync(cancellationToken)
-                .ConfigureAwait(false); ;
+                .ConfigureAwait(false);
 
             return entity;
         }
