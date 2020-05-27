@@ -42,9 +42,7 @@ namespace DotnetBoilerplate.Presentation.Web.Api
             services.AddControllers();
 
             // Logging
-            services.AddLogging(builder => {
-                builder.AddConsole();
-            });
+            services.AddLogging();
 
             // Response Compression
             services.AddResponseCompression();

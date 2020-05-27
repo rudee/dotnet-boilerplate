@@ -5,7 +5,7 @@ using DotnetBoilerplate.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore.Extensions
+namespace DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore
 {
     public static class EntityEntryExtensions
     {

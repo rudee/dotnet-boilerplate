@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using DotnetBoilerplate.Domain.Entities.Identity;
-using DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore.Extensions;
+using DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 

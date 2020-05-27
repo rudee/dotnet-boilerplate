@@ -4,7 +4,7 @@ using DotnetBoilerplate.Infrastructure.RepositoriesBase.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore.Extensions
+namespace DotnetBoilerplate.Infrastructure.Repositories.Identity.EntityFrameworkCore
 {
     public static class ModelBuilderExtensions
     {
