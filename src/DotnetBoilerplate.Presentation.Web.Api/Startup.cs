@@ -6,12 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 
 namespace DotnetBoilerplate.Presentation.Web.Api
 {
@@ -94,10 +92,12 @@ namespace DotnetBoilerplate.Presentation.Web.Api
             logger.LogInformation($"Configuring for '{env.EnvironmentName}' environment");
             if (env.IsDevelopment() || env.IsLocal())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/error-development");
             }
             else
             {
+                app.UseExceptionHandler("/error");
                 app.UseHsts();
                 app.UseResponseCompression();
             }

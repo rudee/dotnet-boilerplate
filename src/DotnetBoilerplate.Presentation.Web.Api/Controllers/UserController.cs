@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using DotnetBoilerplate.Domain.Entities.Identity;
@@ -31,11 +29,8 @@ namespace DotnetBoilerplate.Presentation.Web.Api.Controllers
         }
 
         [HttpGet("{id?}")]
-        public async Task<IActionResult> Get(int? id)
+        public IActionResult Get(int? id)
         {
-            _logger.LogDebug("Get Debug");
-            _logger.LogInformation("Get Information");
-
             if (id == null)
             {
                 return Ok(_userRepository.AsQueryable());
@@ -47,11 +42,6 @@ namespace DotnetBoilerplate.Presentation.Web.Api.Controllers
                 return NotFound();
             }
             return Ok(user);
-
-            //return JsonSerializer.Serialize(user, new JsonSerializerOptions
-            //{
-            //    WriteIndented = true
-            //});
         }
 
         [HttpGet]
