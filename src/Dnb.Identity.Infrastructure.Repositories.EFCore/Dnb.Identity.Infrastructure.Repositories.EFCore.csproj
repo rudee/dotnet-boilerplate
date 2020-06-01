@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dnb.Domain\Dnb.Domain.csproj" />
+    <ProjectReference Include="..\Dnb.Identity.Domain\Dnb.Identity.Domain.csproj" />
+    <ProjectReference Include="..\Dnb.Infrastructure.RepositoriesBase.EFCore\Dnb.Infrastructure.RepositoriesBase.EFCore.csproj" />
+  </ItemGroup>
+
+</Project>
