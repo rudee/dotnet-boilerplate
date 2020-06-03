@@ -46,7 +46,7 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
             {
                 // RowVersion
                 IMutableProperty rowVersion = entityType.FindProperty(nameof(IHasConcurrencyToken.RowVersion));
-                // Generate value on add ooor update
+                // Generate value on add or update
                 rowVersion.ValueGenerated = ValueGenerated.OnAddOrUpdate;
                 // Is concurrency token
                 rowVersion.IsConcurrencyToken = true;

@@ -62,7 +62,14 @@ namespace Dnb.Presentation.WebApi.Controllers
                 //return Ok(await _userRepository.GetAllAsync(null, cancellationToken));
             }
 
-            User user = await _userRepository.GetAsync(id.Value, cancellationToken);
+            User user = await _userRepository.GetAsync(id.Value,
+                                                       u => new User
+                                                       {
+                                                           Id = u.Id,
+                                                           Email = u.Email,
+                                                           Name = u.Name
+                                                       },
+                                                       cancellationToken);
             if (user == null)
             {
                 return NotFound();

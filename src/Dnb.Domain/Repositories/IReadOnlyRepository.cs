@@ -13,17 +13,21 @@ namespace Dnb.Domain.Repositories
         where TPrimaryKey : struct
         where TUserId     : struct
     {
-        Task<TEntity> GetAsync(TPrimaryKey       id,
-                               CancellationToken cancellationToken = default);
+        Task<TEntity> GetAsync(TPrimaryKey                        id,
+                               Expression<Func<TEntity, TEntity>> selector          = null,
+                               CancellationToken                  cancellationToken = default);
 
-        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null,
-                                               CancellationToken               cancellationToken = default);
+        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>    predicate         = null,
+                                               Expression<Func<TEntity, TEntity>> selector          = null,
+                                               CancellationToken                  cancellationToken = default);
 
-        Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate,
-                                           CancellationToken               cancellationToken = default);
+        Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>>    predicate         = null,
+                                           Expression<Func<TEntity, TEntity>> selector          = null,
+                                           CancellationToken                  cancellationToken = default);
 
-        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate,
-                                          CancellationToken               cancellationToken = default);
+        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>>    predicate         = null,
+                                          Expression<Func<TEntity, TEntity>> selector          = null,
+                                          CancellationToken                  cancellationToken = default);
 
         IQueryable<TEntity> AsQueryable();
     }

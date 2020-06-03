@@ -24,137 +24,112 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
             Context = context;
         }
 
-        public virtual async Task<TEntity> GetAsync(TPrimaryKey       id,
-                                                    CancellationToken cancellationToken = default)
-        {
-            return await Context.Set<TEntity>()
-                .FindAsync(new object[] { id }, cancellationToken)
-                .ConfigureAwait(false);
-        }
-
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate         = null,
-                                                                    CancellationToken               cancellationToken = default)
+        public virtual async Task<TEntity> GetAsync(TPrimaryKey                        id,
+                                                    Expression<Func<TEntity, TEntity>> selector          = null,
+                                                    CancellationToken                  cancellationToken = default)
         {
             IQueryable<TEntity> q = Context.Set<TEntity>();
 
-            if (predicate == null)
+            q = ApplyFilter(q);
+
+            q = q.Where(e => e.Id.Equals(id));
+
+            if (selector != null)
             {
-                return await q
-                    .ToListAsync(cancellationToken)
-                    .ConfigureAwait(false);
+                q = q.Select(selector);
             }
 
             return await q
-                .Where(predicate)
+                .SingleOrDefaultAsync(cancellationToken)
+                .ConfigureAwait(false);
+        }
+
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>    predicate         = null,
+                                                                    Expression<Func<TEntity, TEntity>> selector          = null,
+                                                                    CancellationToken                  cancellationToken = default)
+        {
+            IQueryable<TEntity> q = Context.Set<TEntity>();
+
+            q = ApplyFilter(q);
+
+            if (predicate != null)
+            {
+                q = q.Where(predicate);
+            }
+
+            if (selector != null)
+            {
+                q = q.Select(selector);
+            }
+
+            return await q
                 .ToListAsync(cancellationToken)
                 .ConfigureAwait(false);
         }
 
-        public virtual async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate,
-                                                                CancellationToken               cancellationToken = default)
+        public virtual async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>>    predicate         = null,
+                                                                Expression<Func<TEntity, TEntity>> selector          = null,
+                                                                CancellationToken                  cancellationToken = default)
         {
             IQueryable<TEntity> q = Context.Set<TEntity>();
 
+            q = ApplyFilter(q);
+
+            if (predicate != null)
+            {
+                q = q.Where(predicate);
+            }
+
+            if (selector != null)
+            {
+                q = q.Select(selector);
+            }
+
             return await q
-                .SingleOrDefaultAsync(predicate, cancellationToken)
+                .SingleOrDefaultAsync(cancellationToken)
                 .ConfigureAwait(false);
         }
 
-        public virtual async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate,
-                                                               CancellationToken               cancellationToken = default)
+        public virtual async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>>    predicate         = null,
+                                                               Expression<Func<TEntity, TEntity>> selector          = null,
+                                                               CancellationToken                  cancellationToken = default)
         {
             IQueryable<TEntity> q = Context.Set<TEntity>();
 
+            q = ApplyFilter(q);
+
+            if (predicate != null)
+            {
+                q = q.Where(predicate);
+            }
+
+            if (selector != null)
+            {
+                q = q.Select(selector);
+            }
+
             return await q
-                .FirstOrDefaultAsync(predicate, cancellationToken)
+                .FirstOrDefaultAsync(cancellationToken)
                 .ConfigureAwait(false);
         }
 
         public virtual IQueryable<TEntity> AsQueryable()
         {
-            return Context.Set<TEntity>().AsQueryable();
+            IQueryable<TEntity> q = Context.Set<TEntity>();
+
+            return ApplyFilter(q);
         }
 
 
 
-
-
-
-        /*
-        public virtual async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate,
-                                                     CancellationToken               cancellationToken = default)
+        private static IQueryable<TEntity> ApplyFilter(IQueryable<TEntity> q)
         {
-            return await Context.Set<TEntity>()
-                .SingleOrDefaultAsync(predicate, cancellationToken)
-                .ConfigureAwait(false);
-        }
-
-        public virtual async Task<IEnumerable<TEntity>> FindManyAsync(Expression<Func<TEntity, bool>> predicate,
-                                                                      CancellationToken               cancellationToken = default)
-        {
-            return await Context.Set<TEntity>()
-                .Where(predicate)
-                .ToListAsync(cancellationToken)
-                .ConfigureAwait(false);
-        }
-        */
-
-
-
-
-        /*
-        public virtual IQueryable<TEntity> AsQueryable(params NavigationPropertyTree<TEntity>[] includeNavigationTrees)
-        {
-            IQueryable<TEntity> q = Context.Set<TEntity>().AsQueryable();
-
-            q = Include(q, includeNavigationTrees);
-
-            return q;
-        }
-        */
-
-        /*
-        public virtual IQueryable<TEntity> AsQueryable(params NavigationPropertyTree<TEntity>[] includeNavigationTrees)
-        {
-            IQueryable<TEntity> q = Context.Set<TEntity>().AsQueryable();
-
-            q = Include(q, includeNavigationTrees);
-
-            return q;
-        }
-        */
-
-        /*
-        private IQueryable<TEntity> Include(IQueryable<TEntity> q,
-                                            NavigationPropertyTree<TEntity>[] includeNavigationTrees)
-        {
-            if (includeNavigationTrees == null)
+            if (typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity)))
             {
-                return q;
-            }
-
-            foreach (NavigationPropertyTree<TEntity> t in includeNavigationTrees)
-            {
-                if (t == null)
-                {
-                    continue;
-                }
-
-                t.Path
-                //q.Include()
+                q = q.Where(e => !((ISoftDelete)e).IsDeleted);
             }
 
             return q;
         }
-        */
-
-        //private IIncludableQueryable<TEntity, TProperty> Include<TEntity, TProperty>(IQueryable<TEntity>             source,
-        //                                                                             NavigationPropertyPath<TEntity> navigationPropertyPath)
-        //    //where TProperty : class
-        //{
-        //    return source.Include((Expression<Func<TEntity, TProperty>>)navigationPropertyPath.Path);
-
-        //    //source.Include(includeNavigationPropertyPath.Path);
-        //}
     }
 }
