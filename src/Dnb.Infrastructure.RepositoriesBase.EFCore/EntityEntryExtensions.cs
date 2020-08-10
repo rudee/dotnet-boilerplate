@@ -17,7 +17,7 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
             {
                 if (entityEntry.State == EntityState.Modified)
                 {
-                    // Update the Modified property
+                    // Update the ModifiedOn property
                     ((IEntity<TPrimaryKey, TUserId>)entityEntry.Entity).ModifiedOn = DateTime.UtcNow;
                     entityEntry.Property(nameof(IEntity<TPrimaryKey, TUserId>.ModifiedOn)).IsModified = true;
                 }

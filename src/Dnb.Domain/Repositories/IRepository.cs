@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,19 +15,23 @@ namespace Dnb.Domain.Repositories
     {
         Task<TEntity> AddAsync(TEntity           entity,
                                CancellationToken cancellationToken = default);
-        Task<TPrimaryKey> AddAndGetIdAsync(TEntity          entity,
-                                           CancellationToken cancellationToken = default);
 
-        Task DeleteAsync(TEntity           entity,
-                         CancellationToken cancellationToken = default);
+        Task<IEnumerable<TEntity>> AddAsync(IEnumerable<TEntity> entities,
+                                            CancellationToken    cancellationToken = default);
 
         Task DeleteAsync(TPrimaryKey       id,
                          CancellationToken cancellationToken = default);
+
+        Task DeleteAsync(IEnumerable<TPrimaryKey> ids,
+                         CancellationToken        cancellationToken = default);
 
         Task DeleteAsync(Expression<Func<TEntity, bool>> predicate,
                          CancellationToken               cancellationToken = default);
 
         Task<TEntity> UpdateAsync(TEntity           entity,
                                   CancellationToken cancellationToken = default);
+
+        Task<IEnumerable<TEntity>> UpdateAsync(IEnumerable<TEntity> entities,
+                                               CancellationToken    cancellationToken = default);
     }
 }

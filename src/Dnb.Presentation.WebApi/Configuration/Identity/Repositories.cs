@@ -1,3 +1,4 @@
+using System;
 using Dnb.Domain.Repositories;
 using Dnb.Identity.Domain.Entities;
 using Dnb.Identity.Infrastructure.Repositories.EFCore;
@@ -10,9 +11,8 @@ namespace Dnb.Presentation.WebApi.Configuration.Identity
     {
         public static IServiceCollection Configure(IServiceCollection services)
         {
-            services.AddTransient<IReadOnlyRepository<User, int, int>, ReadOnlyRepository<DbContext, User, int, int>>();
-
-            //services.AddTransient<IReadOnlyRepository<Tenant, int>, ReadOnlyRepository<Tenant, int>>();
+            services.AddTransient<IRepository<Tenant, int, Guid>, Repository<DbContext, Tenant, int, Guid>>();
+            services.AddTransient<IRepository<User, Guid, Guid>, Repository<DbContext, User, Guid, Guid>>();
 
 
             return services;

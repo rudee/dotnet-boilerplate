@@ -19,6 +19,8 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
     {
         protected virtual TDbContext Context { get; private set; }
 
+        protected virtual DbSet<TEntity> DbSet => Context.Set<TEntity>();
+
         public ReadOnlyRepository(TDbContext context)
         {
             Context = context;
@@ -28,7 +30,7 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
                                                     Expression<Func<TEntity, TEntity>> selector          = null,
                                                     CancellationToken                  cancellationToken = default)
         {
-            IQueryable<TEntity> q = Context.Set<TEntity>();
+            IQueryable<TEntity> q = DbSet;
 
             q = ApplyFilter(q);
 
@@ -48,7 +50,7 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
                                                                     Expression<Func<TEntity, TEntity>> selector          = null,
                                                                     CancellationToken                  cancellationToken = default)
         {
-            IQueryable<TEntity> q = Context.Set<TEntity>();
+            IQueryable<TEntity> q = DbSet;
 
             q = ApplyFilter(q);
 
@@ -71,7 +73,7 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
                                                                 Expression<Func<TEntity, TEntity>> selector          = null,
                                                                 CancellationToken                  cancellationToken = default)
         {
-            IQueryable<TEntity> q = Context.Set<TEntity>();
+            IQueryable<TEntity> q = DbSet;
 
             q = ApplyFilter(q);
 
@@ -94,7 +96,7 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
                                                                Expression<Func<TEntity, TEntity>> selector          = null,
                                                                CancellationToken                  cancellationToken = default)
         {
-            IQueryable<TEntity> q = Context.Set<TEntity>();
+            IQueryable<TEntity> q = DbSet;
 
             q = ApplyFilter(q);
 
@@ -115,7 +117,7 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
 
         public virtual IQueryable<TEntity> AsQueryable()
         {
-            IQueryable<TEntity> q = Context.Set<TEntity>();
+            IQueryable<TEntity> q = DbSet;
 
             return ApplyFilter(q);
         }

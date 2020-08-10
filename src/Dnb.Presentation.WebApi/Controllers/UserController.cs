@@ -18,10 +18,10 @@ namespace Dnb.Presentation.WebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger _logger;
-        private readonly IReadOnlyRepository<User, int, int> _userRepository;
+        private readonly IReadOnlyRepository<User, Guid, Guid> _userRepository;
 
         public UserController(ILogger<UserController>   logger,
-                              IReadOnlyRepository<User, int, int> userRepository)
+                              IReadOnlyRepository<User, Guid, Guid> userRepository)
         {
             _logger         = logger;
             //_userService    = userService;
@@ -29,7 +29,7 @@ namespace Dnb.Presentation.WebApi.Controllers
         }
 
         [HttpGet("{id?}")]
-        public async Task<IActionResult> Get(int?              id,
+        public async Task<IActionResult> Get(Guid?             id,
                                              CancellationToken cancellationToken = default)
         {
             if (id == null)
@@ -46,7 +46,6 @@ namespace Dnb.Presentation.WebApi.Controllers
                     .Select(u => new User
                     {
                         Id    = u.Id,
-                        Guid  = u.Guid,
                         Email = u.Email,
                         Name  = u.Name,
                         //TenantUsers = u.TenantUsers

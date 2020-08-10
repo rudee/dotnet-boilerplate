@@ -15,7 +15,7 @@ namespace Dnb.Infrastructure.RepositoriesBase.EFCore
             {
                 // Id
                 IMutableProperty id = entityType.FindProperty(nameof(IEntity<TPrimaryKey, TUserId>.Id));
-                // Set Id property as promary key
+                // Set Id property as primary key
                 entityType.SetPrimaryKey(id);
 
                 // CreatedOn
